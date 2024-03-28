@@ -3,6 +3,7 @@ package laboflieven.instructions.logic;
 import laboflieven.registers.TemplateRegister;
 
 import java.util.List;
+import java.util.Random;
 
 public class Evaluator {
     private final List<TemplateRegister<Boolean>> registers;
@@ -16,8 +17,11 @@ public class Evaluator {
     }
 
     public boolean evaluate(Formula formula) {
-        System.out.println();
-        System.out.println(formula);
+        var r = new Random();
+        var a = r.nextInt(3);
+        if (a == 0) {
+            System.out.println(formula);
+        }
         if (!checkValuesThatYieldTrue(registers, solutionsThatYieldTrue, formula)) return false;
         if (!checkValuesThatYieldFalse(registers, solutionsThatYieldFalse, formula)) return false;
         return true;
@@ -28,10 +32,8 @@ public class Evaluator {
             fillScenarioInRegisters(registers, scenario);
             boolean trueVals = form.evaluate();
             if (!trueVals) {
-                System.out.print("0");
                 return false;
             }
-            System.out.print("1");
         }
         return true;
     }
@@ -43,10 +45,8 @@ public class Evaluator {
             boolean falseVals = form.evaluate();
 
             if(falseVals) {
-                System.out.print("0");
                 return false;
             }
-            System.out.print("1");
         }
         return true;
     }

@@ -1,0 +1,5 @@
+a,b,o
+true,true,false
+false,true,true
+true,false,true
+false,false,false

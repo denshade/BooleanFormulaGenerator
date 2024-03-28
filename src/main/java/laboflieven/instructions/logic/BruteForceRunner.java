@@ -3,7 +3,10 @@ package laboflieven.instructions.logic;
 import laboflieven.registers.TemplateRegister;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -34,9 +37,11 @@ public class BruteForceRunner {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println("Reading data from stdin");
-        String data =  new BufferedReader(new InputStreamReader(System.in)).lines().collect(Collectors.joining("\n"));
+    public static void main(String[] args) throws IOException {
+        var lines = Files.readAllLines(new File("file.csv").toPath());
+        System.out.println("Reading from ");
+        String data = String.join("\n", lines);
+        System.out.println("The solution is: ");
         System.out.println(new BruteForceRunner().loadFromString(data, true));
     }
 
