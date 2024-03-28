@@ -16,6 +16,8 @@ public class Evaluator {
     }
 
     public boolean evaluate(Formula formula) {
+        System.out.println();
+        System.out.println(formula);
         if (!checkValuesThatYieldTrue(registers, solutionsThatYieldTrue, formula)) return false;
         if (!checkValuesThatYieldFalse(registers, solutionsThatYieldFalse, formula)) return false;
         return true;
@@ -26,8 +28,10 @@ public class Evaluator {
             fillScenarioInRegisters(registers, scenario);
             boolean trueVals = form.evaluate();
             if (!trueVals) {
+                System.out.print("0");
                 return false;
             }
+            System.out.print("1");
         }
         return true;
     }
@@ -37,9 +41,12 @@ public class Evaluator {
         for (List<Boolean> scenario : solutionsThatYieldTrue) {
             fillScenarioInRegisters(registers, scenario);
             boolean falseVals = form.evaluate();
+
             if(falseVals) {
+                System.out.print("0");
                 return false;
             }
+            System.out.print("1");
         }
         return true;
     }
