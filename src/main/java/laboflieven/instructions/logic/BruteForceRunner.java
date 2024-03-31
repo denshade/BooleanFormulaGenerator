@@ -38,8 +38,13 @@ public class BruteForceRunner {
     }
 
     public static void main(String[] args) throws IOException {
-        var lines = Files.readAllLines(new File("file.csv").toPath());
-        System.out.println("Reading from ");
+        File file = new File("input.csv");
+        if (!file.exists()) {
+            System.err.println("Couldn't find " + file);
+            System.exit(1);
+        }
+        var lines = Files.readAllLines(file.toPath());
+        System.out.println("Reading from " + file);
         String data = String.join("\n", lines);
         System.out.println("The solution is: ");
         System.out.println(new BruteForceRunner().loadFromString(data, true));
